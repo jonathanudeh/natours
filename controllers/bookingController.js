@@ -3,7 +3,13 @@ const AppError = require('../utils/appError');
 const Tour = require('./../models/tourModel');
 const Booking = require('./../models/bookingModel');
 const catchAsync = require('./../utils/catchAsync');
-const {} = require('./handlerFactory');
+const {
+  createOne,
+  deleteOne,
+  updateOne,
+  getAll,
+  getOne,
+} = require('./handlerFactory');
 
 exports.getCheckoutSession = catchAsync(async (req, res, next) => {
   // 1 get the currently booked tour
@@ -47,3 +53,9 @@ exports.createBookingCheckout = catchAsync(async (req, res, next) => {
   await Booking.create({ tour, user, price });
   res.redirect(req.originalUrl.split('?')[0]);
 });
+
+exports.createBooking = createOne(Booking);
+exports.getBooking = getOne(Booking);
+exports.getAllBookings = getAll(Booking);
+exports.updateBooking = updateOne(Booking);
+exports.deleteBooking = deleteOne(Booking);
