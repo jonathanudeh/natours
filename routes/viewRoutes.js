@@ -5,13 +5,15 @@ const {
   getLoginForm,
   getAccount,
   getMyTours,
+  alerts,
 } = require('../controllers/viewController');
 const { protect, isLoggedIn } = require('../controllers/authController');
 // const { createBookingCheckout } = require('../controllers/bookingController');
 
 const router = express.Router();
 
-router.use(isLoggedIn);
+// router.use(isLoggedIn);
+router.use(alerts);
 
 router.get(
   '/',
